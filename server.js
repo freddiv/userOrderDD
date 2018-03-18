@@ -1,12 +1,15 @@
 var express = require('express'),
     app = express();
-
+const port = process.env.PORT || 8080;
 //Express 3
 //app.configure(function() {
-//    app.use(express.static(__dirname, '/'));
+//    app.use(express.static(__dirname, '/'))
 //});
 
 //Express 4
+
+app.set('port', (process.env.PORT || 5000));
+
 app.use(express.static(__dirname + '/'));
 app.all("/*", function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -56,11 +59,11 @@ app.delete('/customers/:id', function(req, res) {
         }
     }  
     res.json(data);
-});
+}); 
 
-app.listen(8080);
+app.listen(port);
 
-console.log('Express listening on port 8080');
+console.log(`Express listening on port ${port}`);
 
         var customers = [
             {
